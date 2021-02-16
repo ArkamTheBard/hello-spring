@@ -22,12 +22,12 @@ public class HelloController {
 
     // Handles request of the form /hello?name=LaunchCode
 
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "hello")
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam String name){
         return "Hello, " + name + "!";
     }
 
-    @GetMapping("helloLang") //this is createMessage lol
+    @PostMapping("helloLang") //this is createMessage lol
     public String helloWithSelect(@RequestParam String name, @RequestParam String langs){
         if(langs.equals("fr")){
             return "Bonjour, " + name + '!';
@@ -53,7 +53,7 @@ public class HelloController {
     public String helloForm(){
         return "<html>" +
                 "<body>" +
-                "<form action='hello' method='post'>" + //submit request to /hello
+                "<form action='/hello' method='post'>" + //submit request to /hello
                 "<input type='text' name='name'>" +
                 "<input type='submit' value='Greet me!'>" +
                 "</form>" +
@@ -65,7 +65,7 @@ public class HelloController {
     public String helloSelect(){
         return "<html>" +
                 "<body>" +
-                "<form action='helloLang'>" +
+                "<form action='helloLang' method='post'>" +
                 "<input type='text' name='name'>" +
                 "<select name='langs'>" +
                 "<option value='eng'>English</option>" +
